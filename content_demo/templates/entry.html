@@ -1,0 +1,19 @@
+<div class="til-page">
+    <div class="til-entry" style="border-bottom: none;">
+        <div class="til-date">{{ date_str }}</div>
+        <h1>{{ title }}</h1>
+        {% if tags %}
+        <div class="til-tags" style="margin-top: 10px;">
+            {% for tag in tags %}
+            <span class="project-tag">{{ tag }}</span>
+            {% endfor %}
+        </div>
+        {% endif %}
+        <div style="margin-top: 20px;">
+            {{ html_content }}
+        </div>
+        <div style="margin-top: 40px;">
+            <a href="/{{ section_slug }}/" class="btn btn-outline">&larr; Back to {{ section_title }}</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,31 @@
+title: "Jane Doe"
+lang: "en"
+default_page: "home"
+footer_text: "© 2026 Jane Doe. Built with Python."
+social:
+  github: "https://github.com/janedoe"
+  orcid: "https://orcid.org/0000-0000-0000-0000"
+
+pages:
+  - folder: "pages"
+    template: "base.html"
+
+dynamic:
+  - folder: "posts"
+    title: "Blog Posts"
+    description: "Welcome to my generic blog where I demonstrate markdown layout capabilities."
+    slug: "posts"
+    templates:
+      base: "base.html"
+      listing: "listing.html"
+      entry: "entry.html"
+
+nav:
+  - name: Home
+    slug: home
+  - name: Blog Posts
+    slug: posts
+  - name: Publications
+    slug: publications
+  - name: Projects
+    slug: projects

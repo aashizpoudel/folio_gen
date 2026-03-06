@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="{{ config.get('lang', 'en') }}">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ config.get('title', 'Site') }} — {{ page_title }}</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="container">
+            <a href="/" class="site-logo">{{ config.get('title', 'Site') }}</a>
+            <button class="mobile-toggle" aria-label="Toggle navigation"
+                onclick="document.querySelector('.site-nav').classList.toggle('open')">
+                <span></span><span></span><span></span>
+            </button>
+            <nav class="site-nav">
+                <ul>
+                    {% for item in config.get('nav', []) %}
+                    {% set url = item.url if item.url else ('/' if item.slug == config.get('default_page') else '/' +
+                    item.slug + '/') %}
+                    {% set active_class = ' active' if item.slug and item.slug == active_slug else '' %}
+                    <li><a href="{{ url }}" class="{{ active_class }}">{{ item.name }}</a></li>
+                    {% endfor %}
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="site-main">
+        <div class="container">
+            {{ content_html | safe }}
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                {{ config.get('footer_text', '') }}
+                <div class="footer-links">
+                    {% if config.get('social', {}).get('github') %}
+                    <a href="{{ config.social.github }}" target="_blank">GitHub</a>
+                    {% endif %}
+                    {% if config.get('social', {}).get('orcid') %}
+                    <a href="{{ config.social.orcid }}" target="_blank">ORCID</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

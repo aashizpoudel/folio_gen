@@ -1,0 +1,35 @@
+<div class="til-page">
+    <h1>{{ section_title }}</h1>
+    <p class="page-description">{{ section_description }}</p>
+
+    {% for entry in page_entries %}
+    <div class="til-entry">
+        <div class="til-date">{{ entry.date }}</div>
+        <h3><a href="/{{ section_slug }}/{{ entry.slug }}/">{{ entry.title }}</a></h3>
+        <div>
+            {% if entry.tags %}
+            {% for tag in entry.tags %}
+            <span class="project-tag">{{ tag }}</span>
+            {% endfor %}
+            {% endif %}
+        </div>
+        <div style="margin-top: 10px;">
+            <a href="/{{ section_slug }}/{{ entry.slug }}/" style="font-size: 0.9em; font-weight: 500;">Read more
+                &rarr;</a>
+        </div>
+    </div>
+    {% endfor %}
+
+    {% if total_pages > 1 %}
+    <div class="pagination" style="margin-top: 30px; display: flex; gap: 10px; justify-content: center;">
+        {% for p in range(1, total_pages + 1) %}
+        {% if p == current_page %}
+        <span class="btn" style="padding: 5px 15px;">{{ p }}</span>
+        {% else %}
+        {% set url = '/' ~ section_slug ~ '/' if p == 1 else '/' ~ section_slug ~ '/page/' ~ p ~ '/' %}
+        <a href="{{ url }}" class="btn btn-outline" style="padding: 5px 15px;">{{ p }}</a>
+        {% endif %}
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
