@@ -23,7 +23,7 @@ pip install Jinja2 Markdown PyYAML
 ### Quick Start
 To build the demo site:
 ```bash
-python3 generate.py content_demo public
+python3 generate.py content_demo public_demo
 ```
 
 ### Directory Structure
